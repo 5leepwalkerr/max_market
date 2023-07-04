@@ -1,7 +1,6 @@
 package com.example.max_market.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,9 +12,14 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "Role")
 public class Role implements GrantedAuthority {
+    public Role(Long id){
+        this.id = id;
+    }
+    public Role(Long id,String roleName){
+        this.roleName = roleName;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
