@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "User",schema = "max_market",uniqueConstraints = {@UniqueConstraint(name = "username", columnNames = {})})
+@Table(name = "User",schema = "public",uniqueConstraints = {@UniqueConstraint(name = "username", columnNames = {})})
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
