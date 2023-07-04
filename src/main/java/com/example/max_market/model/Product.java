@@ -6,15 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Entity
 @AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "Product")
-public class Product {
+@Table(name = "Product",uniqueConstraints = {@UniqueConstraint(name = "productName",columnNames = {})},schema = "public")
+public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "productName",unique = true,length = 100,nullable = false)
