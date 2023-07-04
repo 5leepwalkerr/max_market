@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @Column(name = "password",nullable = false,length = 255)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<String> roles;
+    private Set<Role> roles;
 
     @Transient
     private String passwordConfirm;
