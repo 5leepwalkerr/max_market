@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private  PasswordEncoder passwordEncoder;
     @Override
     public boolean createUser(User user) {
         String username = user.getUsername();

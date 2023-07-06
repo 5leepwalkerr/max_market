@@ -3,6 +3,7 @@ package com.example.max_market.config;
 import com.example.max_market.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,9 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
+    @Autowired
+    private AuthenticationManagerBuilder auth;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,9 +36,5 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder(8);
     }
 
-    @Bean
-    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+
 }
