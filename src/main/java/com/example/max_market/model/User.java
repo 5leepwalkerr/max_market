@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -24,9 +26,21 @@ public class User implements UserDetails {
     @Column(name = "username",unique = true,nullable = false)
     private String username;
 
-    @Column(name = "password",nullable = false,length = 255)
+    @Column(name = "password",nullable = false,length = 1000)
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @Column(name = "active")
+    private boolean active;
+
+    @Column(name = "timeCreated")
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role",
+    joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
     @Transient
@@ -35,7 +49,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return getRoles();
     }
 
     @Override
@@ -55,6 +69,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return active;
     }
 }
