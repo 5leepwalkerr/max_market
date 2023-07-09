@@ -10,4 +10,8 @@ public class MainController {
     public String home(){
         return "home.html";
     }
+    @RequestMapping("/registration")
+    public String registration(){
+        return "registration.html";
+    }
 }
