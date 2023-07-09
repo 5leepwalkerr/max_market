@@ -16,8 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
-    @Autowired
-    private AuthenticationManagerBuilder auth;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,5 +34,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder(8);
     }
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
 
 }
