@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Table(name = "Product",uniqueConstraints = {@UniqueConstraint(name = "productName",columnNames = {})},schema = "public")
 public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "productName",unique = true,length = 100,nullable = false)

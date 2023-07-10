@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,7 +22,7 @@ import java.util.Set;
 @Table(name = "User",schema = "public",uniqueConstraints = {@UniqueConstraint(name = "username", columnNames = {})})
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "username",unique = true,nullable = false)
     private String username;
@@ -41,7 +42,7 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role",
     joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @Transient
     private String passwordConfirm;
@@ -71,4 +72,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return active;
     }
+
 }
