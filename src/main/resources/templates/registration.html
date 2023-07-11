@@ -5,6 +5,11 @@
     <title>maxMarket</title>
 </head>
 <body>
-
+<form action="/market/registration" method="post">
+    Имя пользователя: <input type="text" name="name"><br><br>
+    Пароль: <input type="password" name="password"><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Вход"/>
+</form>
 </body>
 </html>

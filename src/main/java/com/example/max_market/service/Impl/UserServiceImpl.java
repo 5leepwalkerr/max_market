@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean createUser(User user) {
         String username = user.getUsername();
-        if (userRepository.findByUsername(username).get()!=null){
+        if (userRepository.findByUsername(username).isPresent()){
             log.error("This username already exist, try another!");
             return false;
         }
