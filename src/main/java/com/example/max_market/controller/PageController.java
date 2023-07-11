@@ -10,12 +10,8 @@ public class PageController {
     public String home(){
         return "home.html";
     }
-    @GetMapping("/registration")
+    @GetMapping("/market/registration")
     public String registration(){
         return "registration.html";
-    }
-    @GetMapping("/login")
-    public String loginPage(){
-        return "login.html";
     }
 }

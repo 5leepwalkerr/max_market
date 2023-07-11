@@ -12,13 +12,18 @@ public class AuthConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/", "/market/**", "/registration")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()
-                );
-        return http.build();
+                .authorizeRequests()
+                .requestMatchers("/","/products/**","/market/registration")
+                .permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/market/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
+    return http.build();
     }
 
     @Bean
