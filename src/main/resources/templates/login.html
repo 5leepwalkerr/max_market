@@ -5,6 +5,13 @@
     <title>LOGINPAGE</title>
 </head>
 <body>
-
+<h4>Авторизация</h4>
+<form action="market/login" method="post">
+    Username <input type="text" name="username"><br><br>
+    Password: <input type="password" name="password"><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Вход"/>
+</form>
+<a href="market/registration">Зарегистрироваться</a>
 </body>
 </html>
