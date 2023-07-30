@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/market")
 public class PageController {
 
-    @GetMapping()
+    @GetMapping("/marketplace")
     public String home(){
-        return "market.html";
+        return "marketplace.html";
     }
     @GetMapping("/registration")
     public String registration(){

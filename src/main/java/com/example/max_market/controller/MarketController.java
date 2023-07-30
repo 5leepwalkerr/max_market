@@ -29,6 +29,6 @@ public class MarketController {
     @PostMapping("/login")
     public String authUser(@RequestBody User user){
         userService.authUser(user);
-        return "";
+        return "redirect:/marketplace";
     }
 }

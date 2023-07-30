@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import static com.example.max_market.model.Role.ROLE_USER;
 
 @Service
@@ -33,7 +35,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean authUser(User user) {
-        return true;
+    public boolean authUser(User userAuth) {
+        Optional<User> user = userRepository.findByUsername(userAuth.getUsername());
+        if (user.isPresent() && user.get().getPassword().equals(userAuth.getPassword())){
+            userAuth.getRoles().add(ROLE_USER);
+            return true;
+        }
+        return false;
     }
 }
