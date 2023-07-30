@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>maxMarket</title>
+    <title>Registration</title>
 </head>
 <body>
+<h1>Sign up</h1>
 <form action="/market/registration" method="post">
-    Имя пользователя: <input type="text" name="name"><br><br>
-    Пароль: <input type="password" name="password"><br><br>
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Вход"/>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="submit" value="Register">
 </form>
 </body>
 </html>

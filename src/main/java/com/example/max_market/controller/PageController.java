@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/market")
 public class PageController {
 
-    @GetMapping()
+    @GetMapping("/marketplace")
     public String home(){
-        return "home.html";
+        return "marketplace.html";
     }
     @GetMapping("/registration")
     public String registration(){
         return "registration.html";
     }
+    @GetMapping("/login")
+    public String login(){ return "login.html"; }
 }
