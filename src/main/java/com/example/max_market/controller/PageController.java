@@ -31,6 +31,6 @@ public class PageController {
     public String createUser(@RequestBody User user){
         userService.createUser(user);
         log.info("Create new user: {}",user.getCreationDate());
-        return "/marketplace";
+        return "redirect:/market/login";
     }
 }
