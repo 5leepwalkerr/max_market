@@ -37,7 +37,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/market/registration","/market/marketplace")
+                                .requestMatchers("/market/registration")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())

@@ -37,8 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean authUser(User userAuth) {
         Optional<User> user = userRepository.findByUsername(userAuth.getUsername());
-        if (user.isPresent() && user.get().getPassword().equals(userAuth.getPassword())){
-            userAuth.getRoles().add(ROLE_USER);
+        if (user.isPresent() && user.get().getUsername().equals(userAuth.getUsername())){
             return true;
         }
         return false;
