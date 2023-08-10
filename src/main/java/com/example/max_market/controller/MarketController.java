@@ -24,7 +24,7 @@ public class MarketController {
     private UserRepository userRepository;
 
     @PostMapping("/registration")
-    public ResponseEntity<?> createUser (@RequestBody User user){
+    public ResponseEntity<?> createUser(@RequestBody User user){
         userService.createUser(user);
         log.info("Created new user with name: {}",user.getUsername());
         return new ResponseEntity<>(HttpStatus.CREATED);

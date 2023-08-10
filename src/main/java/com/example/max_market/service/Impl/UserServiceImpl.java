@@ -1,5 +1,6 @@
 package com.example.max_market.service.Impl;
 
+import com.example.max_market.CustomExceptions.UserAlreadyExist;
 import com.example.max_market.model.User;
 import com.example.max_market.repository.UserRepository;
 import com.example.max_market.service.UserService;
@@ -20,18 +21,16 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private  PasswordEncoder passwordEncoder;
     @Override
-    public boolean createUser(User user) {
+    public void createUser(User user) {
         String username = user.getUsername();
         if (userRepository.findByUsername(username).isPresent()){
             log.error("This username already exist, try another!");
-            return false;
+            throw new UserAlreadyExist("User already exist try another one!");
         }
         user.setActive(true);
         user.getRoles().add(ROLE_USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        log.info("Saving new User with name {}",username);
-        return true;
     }
 
     @Override
