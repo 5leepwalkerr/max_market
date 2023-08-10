@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .formLogin(form ->
                         form
                                 .loginPage("/market/login")
+                                .successForwardUrl("/market/marketplace")
                                 .permitAll());
         return http.build();
     }

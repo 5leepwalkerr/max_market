@@ -30,10 +30,10 @@ public class MarketController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public String authUser(@RequestBody User user){
+    public ResponseEntity<?> authUser(@RequestBody User user){
         if(userService.authUser(user)) {
             log.info("User {} authorize",user.getUsername());
-            return "redirect:/market/marketplace";
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         else{
             throw new UsernameNotFoundException("User with that attributes not found");
